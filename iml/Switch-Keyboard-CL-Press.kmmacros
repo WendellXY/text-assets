@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Activate</key>
+		<string>Normal</string>
+		<key>CreationDate</key>
+		<real>577127118.29596102</real>
+		<key>CustomIconData</key>
+		<string>KMEP-ToolbarAdvanced</string>
+		<key>Macros</key>
+		<array>
+			<dict>
+				<key>Actions</key>
+				<array>
+					<dict>
+						<key>Conditions</key>
+						<dict>
+							<key>ConditionList</key>
+							<array>
+								<dict>
+									<key>ConditionType</key>
+									<string>Script</string>
+									<key>Path</key>
+									<string></string>
+									<key>ScriptConditionSourceType</key>
+									<string>AppleScriptText</string>
+									<key>ScriptConditionType</key>
+									<string>IsEmpty</string>
+									<key>ScriptResult</key>
+									<string></string>
+									<key>ScriptTerminationStatus</key>
+									<integer>0</integer>
+									<key>ScriptText</key>
+									<string># Example call.set activeKbdLayout to my getActiveKeyboardLayout() # -&gt;, e.g., "U.S."on getActiveKeyboardLayout()		# Surprisingly, using POSIX-style paths (even with '~') works with 	# the `property list file` type.	set plistPath to "~/Library/Preferences/com.apple.HIToolbox.plist"		# !! First, ensure that the plist cache is flushed and that the	# !! *.plist file contains the current value; simply executing	# !! `default read` against the file - even with a dummy	# !! key - does that.	try		do shell script "defaults read " &amp; plistPath &amp; " dummy"	end try		tell application "System Events"				repeat with pli in property list items of ¬			property list item "AppleSelectedInputSources" of ¬			property list file plistPath			# Look for (first) entry with key "KeyboardLayout Name" and return			# its value.			# Note: Not all entries may have a 'KeyboardLayout Name' key, 			# so we must ignore errors.			try				return value of property list item "KeyboardLayout Name" of pli			end try		end repeat			end tellend getActiveKeyboardLayout</string>
+								</dict>
+							</array>
+							<key>ConditionListMatch</key>
+							<string>All</string>
+						</dict>
+						<key>ElseActions</key>
+						<array>
+							<dict>
+								<key>KeyboardLayoutID</key>
+								<string>com.apple.inputmethod.SCIM.ITABC</string>
+								<key>KeyboardLayoutName</key>
+								<string>Pinyin - Simplified</string>
+								<key>MacroActionType</key>
+								<string>SetKeyboardLayout</string>
+							</dict>
+						</array>
+						<key>MacroActionType</key>
+						<string>IfThenElse</string>
+						<key>ThenActions</key>
+						<array>
+							<dict>
+								<key>KeyboardLayoutID</key>
+								<string>com.apple.keylayout.USExtended</string>
+								<key>KeyboardLayoutName</key>
+								<string>ABC - Extended</string>
+								<key>MacroActionType</key>
+								<string>SetKeyboardLayout</string>
+							</dict>
+						</array>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+					</dict>
+				</array>
+				<key>CreationDate</key>
+				<real>613834371.28651905</real>
+				<key>ModificationDate</key>
+				<real>613843338.66502094</real>
+				<key>Name</key>
+				<string>Switch-Keyboard-CL-Press</string>
+				<key>Triggers</key>
+				<array>
+					<dict>
+						<key>FireType</key>
+						<string>Pressed</string>
+						<key>KeyCode</key>
+						<integer>107</integer>
+						<key>MacroTriggerType</key>
+						<string>HotKey</string>
+						<key>Modifiers</key>
+						<integer>0</integer>
+					</dict>
+				</array>
+				<key>UID</key>
+				<string>379D6F88-3E08-43C0-A47E-3FF86D45283B</string>
+			</dict>
+		</array>
+		<key>Name</key>
+		<string>Background</string>
+		<key>ToggleMacroUID</key>
+		<string>60AC7E41-6194-4F05-A17C-2257A2BEC44A</string>
+		<key>UID</key>
+		<string>E456B791-F7A8-4A22-9109-49A1299DE66B</string>
+	</dict>
+</array>
+</plist>
